@@ -16,6 +16,7 @@ import AddTraining from "./AddTraining";
 function Customerlist() {
     const [customers, setCustomers] = useState([]);
     const [open, setOpen] = useState(false);
+    const [msg, setMsg] = useState('');
   
     useEffect(() => {
         getCustomers();
@@ -54,6 +55,7 @@ function Customerlist() {
           method: "DELETE" 
         })
         .then(_ => getCustomers())
+        .then(_ => setMsg('Customer was deleted succesfully'))
         .then(_ => handleOpen())
         .catch(err => console.error(err))
       }
@@ -67,6 +69,8 @@ function Customerlist() {
         body: JSON.stringify(customer),
       })
         .then(response => getCustomers())
+        .then(_ => setMsg('New customer was added succesfully'))
+        .then(_ => handleOpen())
         .catch(err => console.error(err));
     };
 
@@ -80,6 +84,8 @@ function Customerlist() {
         body: JSON.stringify(customer)
       })
       .then(res => fetchData()) 
+      .then(_ => setMsg('Customer was updated succesfully'))
+      .then(_ => handleOpen())
       .catch(err => console.error(err))
     }
 
@@ -90,6 +96,8 @@ function Customerlist() {
         body: JSON.stringify(training)
       })
       .then(res => fetchData())
+      .then(_ => setMsg('New training added'))
+      .then(_ => handleOpen())
       .catch(err => console.log(err))
     }
 
@@ -97,27 +105,27 @@ function Customerlist() {
     const columns = [
         {
           headerName: 'Add training',
-          width: '140',
+          width: 120,
           cellRendererFramework: (params) => <AddTraining addTraining={addTraining} params={params} />
         },
         {headerName: 'First name', field: 'firstname', sortable: true, filter: true, width: 140},
         {headerName: 'Last name',field: 'lastname', sortable: true, filter: true, width: 150},
-        {headerName: 'Address', field: 'streetaddress', sortable: true, filter: true},
-        {headerName: 'Post code', field: 'postcode', sortable: true, filter: true, width: 150},
-        {headerName: 'City', field: 'city', sortable: true, filter: true, width: 150},
-        {headerName: 'E-mail', field: 'email', sortable: true, filter: true},
-        {headerName: 'Phone', field: 'phone', sortable: true, filter: true, width: 150},
+        {headerName: 'Address', field: 'streetaddress', sortable: true, filter: true, width: 160},
+        {headerName: 'Post code', field: 'postcode', sortable: true, filter: true, width: 130},
+        {headerName: 'City', field: 'city', sortable: true, filter: true, width: 140},
+        {headerName: 'E-mail', field: 'email', sortable: true, filter: true, width: 175},
+        {headerName: 'Phone', field: 'phone', sortable: true, filter: true, width: 130},
         {
           headerName: '',
           accessor: 'content.self.href',
-          width: 90,
+          width: 80,
           cellRendererFramework: (params) => 
           <EditCustomer updateCustomer={updateCustomer} customer={params.data} />
         },
         {
           headerName: '',
           field: "links",
-          width: 90,
+          width: 70,
           cellRendererFramework: (params) => (
           <IconButton 
             color="secondary" 
@@ -136,7 +144,6 @@ function Customerlist() {
         <AddCustomer addCustomer={addCustomer} />
       </div>
         <AgGridReact
-            
           rowData={customers}
           columnDefs={columns}
           pagination="true"
@@ -148,7 +155,7 @@ function Customerlist() {
         open={open}
         onClose={handleClose}
         autoHideDuration={2500}
-        message="Customer deleted succesfully"
+        message={msg}
       />
     </div>
   );

@@ -43,7 +43,7 @@ function AddTraining(props) {
 
     return (
         <div>
-          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+          <Button variant="outlined" color="primary" size="small" onClick={handleClickOpen}>
             +
           </Button>
           <Dialog

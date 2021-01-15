@@ -44,7 +44,7 @@ function EventCalendar() {
         localizer={localizer}
         events={events}
         step={60}
-        defaultView={"month"}
+        defaultView={"week"}
       ></Calendar>
     </div>
   );
