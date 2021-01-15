@@ -51,14 +51,14 @@ function AddTraining(props) {
             onClose={handleClose}
             aria-labelledby="form-dialog-title"
           >
-          <DialogTitle id="form-dialog-title">New Training</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add a New Training</DialogTitle>
             <DialogContent>
               <TextField
               margin="dense"
               name="date"
               value={training.date}
               onChange={inputChanged}
-              label="Date"
+              label="Date as MM.DD.YYYY HH:mm"
               fullWidth
             />
             <TextField
@@ -66,7 +66,7 @@ function AddTraining(props) {
               name="duration"
               value={training.duration}
               onChange={inputChanged}
-              label="Duration"
+              label="Duration as minutes"
               fullWidth
             />
             <TextField

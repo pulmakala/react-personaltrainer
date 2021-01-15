@@ -3,21 +3,16 @@ import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import TextField from '@material-ui/core/TextField';
 
-import IconButton from '@material-ui/core/IconButton';
 import PeopleIcon from '@material-ui/icons/People';
 import SportsIcon from '@material-ui/icons/Sports';
 import EventIcon from '@material-ui/icons/Event';
 
 import Customerlist from './components/Customerlist';
 import Trainingslist from './components/Trainingslist';
+import Calendar from './components/Calendar.js';
 
 
 function App() {
@@ -51,11 +46,10 @@ function App() {
       </div>}
       {value === 'three' && 
       <div>
-        <div>Calendar</div>
+        <Calendar />
       </div>}
     </div>
   );
 }
 
 export default App;
-
